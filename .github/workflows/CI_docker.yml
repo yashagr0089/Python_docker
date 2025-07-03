@@ -26,5 +26,8 @@ jobs:
         run: |
           docker push $DOCKER_IMAGE:${{ github.sha }}
           docker push $DOCKER_IMAGE:latest
+      - name: Create and run container
+        run: |
+          docker run -d --name my-python-container $DOCKER_IMAGE:latest
       
         
