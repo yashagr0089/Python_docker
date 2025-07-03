@@ -19,7 +19,7 @@ jobs:
           username: ${{env.DOCKER_USERNAME}}
           password: ${{env.DOCKER_PASSWORD}}
       - name: Docker Build
-        run: docker build -t ${{env.DOCKER_IMAGE}}
+        run: docker build -t ${{env.DOCKER_IMAGE}} .
       - name: Push the Docker Image to Hub
         run: docker push $DOCKER_IMAGE:latest
       
