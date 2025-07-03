@@ -1,1 +1,26 @@
+name: CI with Docker
 
+on:
+  push
+
+env:
+  DOCKER_USERNAME: ${{vars.DOCKER_NAME}}
+  DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+  DOCKER_IMAGE: my-python-project
+jobs:
+  build-using-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4.2.2
+      - name: Docker login
+        uses: docker/login-action@v3.4.0
+        with:
+          username: ${{env.DOCKER_USERNAME}}
+          password: ${{env.DOCKER_PASSWORD}}
+      - name: Docker Build
+        run: docker build -t ${{env.DOCKER_IMAGE}}
+      - name: Push the Docker Image to Hub
+        run: docker push $DOCKER_IMAGE:latest
+      
+        
