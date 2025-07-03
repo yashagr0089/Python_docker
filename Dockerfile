@@ -21,7 +21,7 @@ FROM python:$PYTHON_VERSION-slim as build
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1
 
 # Define workdir
-WORKDIR /code/
+WORKDIR /Python_docker
 
 # Upgrade pip and then install build tools
 RUN pip install --upgrade pip && \
